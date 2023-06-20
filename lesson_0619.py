@@ -96,3 +96,123 @@ short_words=[]
 short_words=[word for word in words if(len(word)<=3)]
 print(short_words)
 
+#STEP1) 이름을 입력 받아 사용자 정보(dictionary)를 반납하시오.
+#STEP2) 이름과 나이 등을 입력 받아서 ....
+users = [
+    {"name": "Alice", "age": 25, "location": "Seoul", "car": "BMW"},
+    {"name": "Bob", "age": 30, "location": "Busan", "car": "Mercedes"},
+    {"name": "Charlie", "age": 35, "location": "Daegu", "car": "Audi"},
+]
+
+def find_users(target):
+    result=[]
+    for u in users:
+        if u["name"]==target["name"] and u["age"]==target["age"]:
+            result.append(u)
+    return result
+
+def enter_name():
+    name = input("enter name : ")
+    print(find_users(name))
+
+#enter_name()
+
+target={
+    "name":"Bob",
+    "age":30
+}
+print(find_users(target))
+
+
+#STEP1)사용자로부터 문자(문장)을 입력받아 대문자로 변환하시오.
+#STEP2)사용자로부터 문자(문장)에서 대문자는 소문자로, 소문자는 대문자로 변환하시오.
+def conver_case(text):
+    result=""
+    for t in text:
+        if t.isupper():
+            result+=t.lower()
+        else:
+            result+=t.upper()
+    return result
+
+text=input("enter : ")
+print(conver_case(text))
+
+
+#입력받은 인자의 리스트 중에서 가장 큰 숫자를 반납하시오.
+def find_max(numbers):
+    max=numbers[0]
+    for num in numbers:
+        if num>max:
+            max=num
+
+    return max
+
+numbers=[15,3,7,2,9,1,4,10]
+print("max : ",find_max(numbers))
+
+
+
+#리스트의 중복을 제거하시오.
+numbers=[1,2,3,4,3,2,1,5,6,7,6,5]
+
+def remove_duplicate(numbers):
+    unique_list=[]
+    for num in numbers:
+        if num not in unique_list:
+            unique_list.append(num)
+
+    return unique_list
+
+
+unique_list=remove_duplicate(numbers)
+print(numbers)
+print(unique_list)
+
+numbers=[1,2,3,4,3,2,1,5,6,7,6,5]
+unique_list=set(numbers)
+print(unique_list)
+
+#공백으로 구분된 문자열을 입력받아서 max를 구하시오.
+def find_max1(user_input):
+    list=[]
+    for cur in user_input.split():
+        list.append(int(cur))
+    return max(list)
+
+def find_max2(user_input):
+    list=[int(cur) for cur in user_input.split()]
+    return max(list)
+
+user_input=input("enter : ")
+max_number=find_max2(user_input)
+print(max_number)
+
+
+
+#name, birthdate, gender, address 데이터 생성/출력/파일로 저장
+#ex) jane, 1990-01-03, male, 50, new york
+
+'''과제'''
+#search_user={} 안에 있는 조건이 모두 매칭하는 사용자를 찾아내시오.
+users = [
+    {"name": "Alice", "age": 35, "location": "Seoul", "car": "BMW"},
+    {"name": "Bob", "age": 30, "location": "Busan", "car": "Mercedes"},
+    {"name": "Charlie", "age": 35, "location": "Daegu", "car": "Audi"},
+    {"name": "Anna", "age": 35, "location": "Jejiu", "car": "BMW"}
+]
+search_user={"age" : 35, "car":"BMW"}
+def find_user(search_user):
+    keys=search_user.keys()
+    result=[]
+    for u in users:
+        cnt=0
+        for key in keys:
+            if u[key]==search_user[key]:
+                cnt+=1
+        if len(keys)==cnt:
+            result.append(u)
+
+    return result
+
+print(find_user(search_user))
