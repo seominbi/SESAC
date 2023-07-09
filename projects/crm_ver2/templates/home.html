@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>page : {{page}} | pages_index : {{pages_index}} | search : {{search_name}}</h2>
+
+    <form action="/user" method="GET"> 
+        {%if search_name %}
+            <input type="text" name="name" placeholder="input user name." value="{{search_name}}">
+        {%else%}
+            <input type="text" name="name" placeholder="input user name.">
+        {%endif%}
+        <button type="submit">search</button>
+        <input type="button" value="reset" onclick="window.location='/'">
+    </form>
+
+    <table border="1" class="user-list">
+        <thead>
+            <tr>
+                {% for header in headers %}
+                    <th>{{header}}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for page_data in page_datas %}
+                <tr onclick="window.location='user/{{page_data[0]}}'">
+                    {% for item in page_data %}
+                        {%if item == page_data[0]%}
+                            <td><a href="user/{{page_data[0]}}">{{item}}</a></td>
+                        {%else%}
+                            <td>{{item}}</td>
+                        {%endif%}
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <ul type="none" class="page-list">
+        {%if pages_index!=0%}
+            <li><a href="{{url_for('user.user', name=search_name, page=page,pages_index=pages_index-1)}}">before</a></li>
+        {%else%}
+            <li>before</li>
+        {%endif%}
+
+        {% for i in pages%}
+            <li><a href="{{url_for('user.user', name=search_name, page=(i+1),pages_index=pages_index)}}">{{i+1}}</a></li>
+        {%endfor%}
+
+        {%if pages_index != last_pages_index%}
+            <li><a href="{{url_for('user.user', name=search_name, page=page,pages_index=pages_index+1)}}">next</a></li>
+        {%else%}
+            <li>next</li>
+        {%endif%}
+        </ul>
+{% endblock %}

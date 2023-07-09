@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>minB CRM</title>
+    <style>
+        @import url("../static/css/details.css");
+    </style>
+</head>
+<body>
+
+    <table border="1">
+        <caption>{% block table_caption %} {% endblock %}</caption>
+        <thead>
+            <tr>
+                {% for header in headers %}
+                    <th>{{header}}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                {% for detail in details %}
+                    {%for item in detail%}
+                        <td>{{item}}</td>
+                    {%endfor%}
+                {%endfor%}
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- <center><a href="/">back to list</a></center> -->
+    <!-- <center><a href="javascript:history.back()">back to list</a></center> -->
+    <center><button onclick="window.history.back()">back to list</button></center>
+    
+</body>
+</html>

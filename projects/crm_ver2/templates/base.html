@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>minB CRM</title>
+    <style>
+        @import url("../static/css/base.css");
+        @import url("../static/css/home.css");
+    </style>
+</head>
+<body>
+    <ul class="nav-bar" type="none">
+        <li><a href="/">user</a></li>
+        <li><a href="/order">order</a></li>
+        <li><a href="/orderitem">orderitem</a></li>
+        <li><a href="/item">item</a></li>
+        <li><a href="/store">store</a></li>
+    </ul>
+
+    {% block content %} 
+	
+    <!-- base.html을 상속한 템플릿에서 구현해야 하는 영역 -->
+    
+    {% endblock %}
+</body>
+</html>

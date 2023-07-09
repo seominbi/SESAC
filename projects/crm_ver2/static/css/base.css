@@ -1,0 +1,12 @@
+.nav-bar{
+    display: flex;
+    background-color: orange;
+    justify-content: space-between;
+    padding:1% 15%;
+}
+.nav-bar li a{
+    text-decoration: none;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
