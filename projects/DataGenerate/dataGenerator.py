@@ -240,13 +240,15 @@ class orderDataGenerator(DataGenerator):
         return id
     
     def generate_orderAt(self,start_date,end_date):
-        # return a random datetime between two datetime objects.
-        # ref) https://stackoverflow.com/questions/71440388/generate-random-date-in-iso-date-time-format-yyyy-mm-ddthhmmss-sssxxx
+        # return a random datetime between two datetime objects and timestamp.
+        # ref) https://stackoverflow.com/questions/71381462/generate-random-hhmmss-using-datetime
         delta = end_date - start_date     #return format : '%Y%m%d %I:%M %p'
         int_delta = (delta.days * 24 * 60 * 60)     #%Y%m%d를 seconds로 변환
         random_second = random.randrange(int_delta) #랜덤 날짜 생성
-        birthdate=start_date + datetime.timedelta(seconds=random_second)
-        return birthdate.strftime('%Y-%m-%d')   #랜덤 날짜 리턴
+        orderdate=start_date + datetime.timedelta(seconds=random_second)
+        timestamp=datetime.time(hour=random.randint(0, 23), minute=random.randint(0, 59), second=random.randint(0, 59))
+
+        return orderdate.strftime('%Y-%m-%d')+' '+str(timestamp)   #랜덤 날짜 리턴
     
     def generate_storeIds(self):
         with open("database\\store.csv","r",newline="", encoding='utf-8') as file:
@@ -284,7 +286,6 @@ class orderDataGenerator(DataGenerator):
             }
 
             self.datas.append(order)
-            print(order)
 
 
 # id, orderAt, storeId, userId
