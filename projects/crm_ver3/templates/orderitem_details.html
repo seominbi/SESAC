@@ -1,0 +1,27 @@
+{% extends 'details_base.html' %}
+{% block details_table_caption %} order item {% endblock %}
+
+{% block details_table_contents %} 
+    <thead>
+        <tr>
+            {% for header in headers %}
+                <th>{{header}}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for detail in details %}
+            <tr>
+                {%for item in detail%}
+                    {%if item==detail[2]%}
+                        <td><a href="/store/{{detail[2]}}">{{item}}</a></td>
+                    {%elif item==detail[3]%}
+                        <td><a href="/user/{{detail[3]}}">{{item}}</a></td>
+                    {%else%}
+                        <td>{{item}}</td>
+                    {%endif%}
+                {%endfor%}
+            </tr>
+        {%endfor%}
+    </tbody>
+{% endblock %}

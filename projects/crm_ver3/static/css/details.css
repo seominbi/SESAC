@@ -1,0 +1,49 @@
+table{
+    border-collapse: collapse;
+    text-align: center;
+    width: 100%;
+    margin-top: 3%;
+    margin-bottom: 2%;
+}
+table caption{
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 1%;
+    text-align: left;
+    text-shadow:
+        1px 1px 1px orange,
+        1.5px 1.5px 1.5px orange;
+}
+table thead{
+    background-color: #eee;
+}
+table tr td,th{
+    padding: 1%;
+}
+table tr:hover{
+    background-color: rgb(255, 200, 97);
+    cursor: pointer;
+}
+table thead tr:hover{
+    background-color: #eee;
+    cursor: none;
+}
+table tr td a{
+    text-decoration: none;
+    /* color: orange; */
+}
+
+center button{
+    background-color: orange;
+    padding: 0.5% 1%;
+    border: none;
+    border-radius: 10%;
+
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+}
+center button:hover{
+    cursor: pointer;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}

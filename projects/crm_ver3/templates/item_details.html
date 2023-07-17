@@ -1,0 +1,50 @@
+{% extends 'details_base.html' %}
+{% block details_table_caption %} 상품정보 {% endblock %}
+
+{% block details_table_contents %} 
+    <thead>
+        <tr>
+            {% for header in headers %}
+                <th>{{header}}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            {% for detail in details %}
+                {%for item in detail%}
+                    <td>{{item}}</td>
+                {%endfor%}
+            {%endfor%}
+        </tr>
+    </tbody>
+{% endblock %}
+
+{% block details_option %} 
+<table>
+    <caption>&#10047; 월간매출액 &#10047;</caption>
+    {% for option in options %}
+        {%if option == options[0]%}
+            <thead>
+                <tr>
+                    {% for header in option %}
+                        <th>{{header}}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+        {%else%}
+            <tbody>
+                <tr>
+                {%for item in option%}
+                    {%if item == option[0]%}
+                        <td><a href="">{{item}}</a></td>
+                    {%else%}
+                        <td>{{item}}</td>
+                    {%endif%}
+                {%endfor%}
+                </tr>
+            </tbody>
+        {%endif%}
+    {%endfor%}
+</table>
+{% endblock %}
