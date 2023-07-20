@@ -21,6 +21,9 @@
 {% endblock %}
 
 {% block details_option %} 
+{% set item_chart_labels=[] %}
+{% set item_chart_data_itemRevenue=[] %}
+{% set item_chart_data_itemCount=[] %}
 <table>
     <caption>&#10047; 월간매출액 &#10047;</caption>
     {% for option in options %}
@@ -37,14 +40,67 @@
                 <tr>
                 {%for item in option%}
                     {%if item == option[0]%}
-                        <td><a href="">{{item}}</a></td>
+                        {% set _ = item_chart_labels.append(item) %}
+                    {%elif item == option[1]%}
+                        {% set _ = item_chart_data_itemRevenue.append(item) %}
                     {%else%}
-                        <td>{{item}}</td>
+                        {% set _ = item_chart_data_itemCount.append(item) %}
                     {%endif%}
+                    <td>{{item}}</td>
                 {%endfor%}
                 </tr>
             </tbody>
         {%endif%}
     {%endfor%}
 </table>
+<div>
+    <canvas id="item_chart"></canvas>
+</div>
+
+<script>
+    const item_chart = document.getElementById('item_chart');
+    const item_chart_labels={{item_chart_labels | tojson}};
+    const item_chart_data_itemRevenue={{item_chart_data_itemRevenue | tojson}};
+    const item_chart_data_itemCount={{item_chart_data_itemCount | tojson}};
+
+        new Chart(item_chart, {
+            data: {
+                datasets: [{
+                    type: 'bar',
+                    label: 'ItemCount',
+                    data: item_chart_data_itemCount,
+                    yAxisID: 'y-axis-1',
+                    order: 1,
+                }, {
+                    type: 'line',
+                    label: 'TotalRevenue',
+                    data: item_chart_data_itemRevenue,
+                    yAxisID: 'y-axis-2',
+                    order: 2,
+                }],
+                labels: item_chart_labels
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        id: 'y-axis-1',
+                        type: 'linear',
+                        position: 'left',
+                        ticks: {
+                            beginAtZero: true,
+                        },
+                    },{
+                        id: 'y-axis-2',
+                        type: 'linear',
+                        position: 'right',
+                        ticks: {
+                            beginAtZero: true,
+                        },
+                    }]
+                }
+            }
+        });
+
+
+</script>
 {% endblock %}

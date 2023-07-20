@@ -42,8 +42,35 @@
             <tbody>
                 <tr>
                 {%for item in option%}
-                    {%if item == option[0]%}
-                        <td><a href="">{{item}}</a></td>
+                    {%if item == option[0] and not month%}
+                            <td><a href="?month={{item}}">{{item}}</a></td>
+                    {%else%}
+                        <td>{{item}}</td>
+                    {%endif%}
+                {%endfor%}
+                </tr>
+            </tbody>
+        {%endif%}
+    {%endfor%}
+</table>
+
+<table>
+    <caption>&#10047; 단골고객 &#10047;</caption>
+    {% for rank in ranks %}
+        {%if rank == ranks[0]%}
+            <thead>
+                <tr>
+                    {% for header in rank %}
+                        <th>{{header}}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+        {%else%}
+            <tbody>
+                <tr>
+                {%for item in rank%}
+                    {%if item == rank[0]%}
+                        <td><a href="/user/{{rank[0]}}">{{item}}</a></td>
                     {%else%}
                         <td>{{item}}</td>
                     {%endif%}
